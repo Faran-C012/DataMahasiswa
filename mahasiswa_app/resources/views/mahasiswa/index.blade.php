@@ -28,6 +28,9 @@
                     @csrf @method('DELETE')
                     <button type="submit" onclick="return confirm('Yakin?')">Hapus</button>
                 </form>
+                <a href="{{ url('/mahasiswa/export-excel') }}" class="btn btn-success mb-2">Export Excel</a>
+                <a href="{{ url('/mahasiswa/export-pdf') }}" class="btn btn-danger mb-2">Export PDF</a>
+                <a href="{{ url('/mahasiswa/cetak/'.$mhs->id) }}" target="_blank" class="btn btn-sm btn-info">Cetak</a>
             </td>
         </tr>
         @endforeach

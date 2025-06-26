@@ -9,3 +9,12 @@ Route::get('/', function () {
 use App\Http\Controllers\MahasiswaController;
 
 Route::resource('mahasiswa', MahasiswaController::class);
+
+use App\Exports\MahasiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+Route::get('/mahasiswa/export-excel', function () {
+    return Excel::download(new MahasiswaExport, 'mahasiswa.xlsx');
+});
+
+Route::get('/mahasiswa/export-pdf', [App\Http\Controllers\MahasiswaController::class, 'exportPdf']);

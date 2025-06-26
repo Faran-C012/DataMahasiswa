@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MahasiswaController extends Controller
 {
@@ -52,4 +53,18 @@ class MahasiswaController extends Controller
         $mahasiswa->delete();
         return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil dihapus.');
     }
+
+    public function exportPdf()
+    {
+        $mahasiswa = Mahasiswa::all();
+        $pdf = Pdf::loadView('mahasiswa.pdf', compact('mahasiswa'));
+        return $pdf->download('mahasiswa.pdf');
+    }
+
+    public function cetakStruk($id)
+    {
+        $mhs = Mahasiswa::findOrFail($id);
+        return view('mahasiswa.cetak', compact('mhs'));
+    }
+
 }
