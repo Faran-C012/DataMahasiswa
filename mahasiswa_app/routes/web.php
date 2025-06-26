@@ -18,3 +18,5 @@ Route::get('/mahasiswa/export-excel', function () {
 });
 
 Route::get('/mahasiswa/export-pdf', [App\Http\Controllers\MahasiswaController::class, 'exportPdf']);
+
+Route::get('/mahasiswa/cetak/{id}', [App\Http\Controllers\MahasiswaController::class, 'cetakStruk']);
